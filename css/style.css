@@ -1,0 +1,62 @@
+@font-face {
+    font-family: burgernation;
+    src: url(Burger\ Nation.otf);
+}
+
+body{
+    overflow: hidden;
+    font-family: Geneva, Arial;
+    animation: opacity 1s 1;
+
+}
+#indexfont{
+    font-family: burgernation;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 38vh;
+    font-size: 12vh;
+}
+header{
+    font-family: burgernation;
+    text-align: center;
+    font-size: 3vh;
+    
+}
+#selectionBox{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 1vw;
+}
+#selectionHeader{
+    text-align: center;
+    animation: opacity 1s 1;
+}
+.select{
+    text-align: center;
+    width: 15vw;
+    height: 15vw;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #000;
+    border-radius: 1vw;
+    transition: all 0.5s;
+}
+.select:hover{
+    border-radius: 2vw;
+    filter: brightness(75%);
+    transition: all 0.5s;
+}
+
+@keyframes opacity {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
