@@ -13,24 +13,39 @@ function generateBread() {
 async function generateMeat() {
     selectionBox.innerHTML = ""
     selectionHeader.innerHTML = "Wähle dein Fleisch"
-    for(let i = 0; i< json.beef.length; i++){
+    for(let i = 0; i< json.meat.length; i++){
         selectionBox.innerHTML += `
-            <div class="select" onclick="" style="background-image: url('${json.beef[i].image}')">
-                <h3>${json.beef[i].name}</h3>
+            <div class="select" onclick='generateCheese(), setParams("meat", "${json.meat[i].value}")' style="background-image: url('${json.meat[i].image}')">
+                <h3>${json.meat[i].name}</h3>
             </div>
         `
     }
 }
-async function generateChesse(){
+async function generateCheese(){
     selectionBox.innerHTML = ""
-    selectionHeader = "Käse"
+    selectionHeader.innerHTML = "Wähle deinen Käse"
     for (let i = 0; i < json.cheese.length; i++) {
-        const element = array[i];
-        
+        selectionBox.innerHTML += `
+            <div class="select" onclick='generateSalad(), setParams("cheese", "${json.cheese[i].value}")' style="background-image: url('${json.cheese[i].image}')">
+                <h3>${json.cheese[i].name}</h3>
+            </div>
+        `
     }
+}
+async function generateSalad(){
+    /**
+     * Kalorien: 40
+     */
+    selectionHeader.innerHTML = "Willst du Salat"
     selectionBox.innerHTML = `
-        
+        <div class="select" onclick='setParams("salad", "yes"), link()' style="background-image: url('../css/image/salad.jpg')">
+            <h3>Ja</h3>
+        </div>
+        <div class="select" onclick='setParams("salad", "no"), link()' style="background-color: #fff">
+            <h3>Nein</h3>
+        </div>
     `
+    
 }
 async function setParams(key, value){
     let url = new URL(window.location)
@@ -38,4 +53,7 @@ async function setParams(key, value){
     params.set(key, value)
 
     console.log(params);
+}
+async function link(){
+    window.open("./endscreen.html", "_self")
 }
