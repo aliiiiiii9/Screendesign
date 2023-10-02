@@ -4,11 +4,11 @@ let cookBox = document.getElementById('cookBox')
 let valueBox = document.getElementById('Werte')
 let array = []
 let arr = []
-let calories
+let cal = 0
 function generateBread() {
     for (let i = 0; i < json.bread.length; i++) {
         selectionBox.innerHTML += `
-            <div class="select" onclick='generateMeat(), setParams("${json.bread[i].value}" )' style="background-image: url('${json.bread[i].image}')">
+            <div class="select" onclick='generateMeat(), setParams("${json.bread[i].value}"), setName("${json.bread[i].name}"), calcCal(${json.bread[i].cal})' style="background-image: url('${json.bread[i].image}')">
                 <h3>${json.bread[i].name}</h3>
             </div>
         `
@@ -20,7 +20,7 @@ async function generateMeat() {
     selectionHeader.innerHTML = "Wähle dein Fleisch"
     for (let i = 0; i < json.meat.length; i++) {
         selectionBox.innerHTML += `
-            <div class="select" onclick='generateCheese(), setParams("${json.meat[i].value}")' style="background-image: url('${json.meat[i].image}')">
+            <div class="select" onclick='generateCheese(), setParams("${json.meat[i].value}"), setName("${json.meat[i].name}"), calcCal(${json.meat[i].cal})' style="background-image: url('${json.meat[i].image}')">
                 <h3>${json.meat[i].name}</h3>
             </div>
         `
@@ -31,22 +31,19 @@ async function generateCheese() {
     selectionHeader.innerHTML = "Wähle deinen Käse"
     for (let i = 0; i < json.cheese.length; i++) {
         selectionBox.innerHTML += `
-            <div class="select" onclick='generateSalad(), setParams("${json.cheese[i].value}")' style="background-image: url('${json.cheese[i].image}')">
+            <div class="select" onclick='generateSalad(), setParams("${json.cheese[i].value}"), setName("${json.cheese[i].name}"), calcCal(${json.cheese[i].cal})' style="background-image: url('${json.cheese[i].image}')">
                 <h3>${json.cheese[i].name}</h3>
             </div>
         `
     }
 }
 async function generateSalad() {
-    /**
-     * Kalorien: 40
-     */
     selectionHeader.innerHTML = "Willst du Salat"
     selectionBox.innerHTML = `
-        <div class="select" onclick='setParams("salad"), cook()' style="background-image: url('../css/image/salad.jpg')">
+        <div class="select" onclick='setParams("salad"), cook(), setName("Salat"), calcCal(40)' style="background-image: url('../css/image/salad.jpg')">
             <h3>Ja</h3>
         </div>
-        <div class="select" onclick='setParams("no"), cook()' style="background-image: url('../css/image/nosalad.jpg')">
+        <div class="select" onclick='setParams("no"), cook(), setName("no"), calcCal(0)' style="background-image: url('../css/image/nosalad.jpg')">
             <h3>Nein</h3>
         </div>
     `
@@ -124,29 +121,41 @@ async function cook() {
     if(array[1] == "fish"){
         document.getElementById('meat').style.left = "39.5%"
     }
-    let jsonString = JSON.stringify(array)
+    let jsonString = JSON.stringify(arr)
+    //let calories = JSON.stringify(cal)
     localStorage.setItem('burger', jsonString)
+    localStorage.setItem('calories', cal)
     console.log(localStorage);
 }
 async function setParams(value) {
     array.push(value)
     console.log(array);
-    
+}
+async function setName(value){
+    arr.push(value)
+    console.log(arr);
+}
+
+async function calcCal(value){
+    cal += value
 }
 async function link() {
     window.open("./endscreen.html", "_self")
 }
 function values(){
     let arr = JSON.parse(localStorage.getItem('burger'))
+    let calories = localStorage.getItem('calories')
     if(arr[3] == "no"){
         valueBox.innerHTML = `
         <h2>Du hast gewählt:</h2>
-        <h2>${arr[0]} mit ${arr[1]} und ${arr[2]} ohne Salat</h2>
+        <h2><span class="bold">${arr[0]} </span>mit<span class="bold"> ${arr[1]} </span>und<span class="bold"> ${arr[2]} </span>ohne Salat</h2>
+        <h2>Zusätzlich hat dein Burger<span class="bold"> ${calories} </span>Kalorien</h2>
     `
     }else{
         valueBox.innerHTML = `
         <h2>Du hast gewählt:</h2>
-        <h2>${arr[0]} mit ${arr[1]} und ${arr[2]} mit Salat</h2>
+        <h2><span class="bold">${arr[0]} </span>mit<span class="bold"> ${arr[1]} </span>und<span class="bold"> ${arr[2]} </span>mit<span class="bold"> Salat</span></h2>
+        <h2>Zusätzlich hat dein Burger<span class="bold"> ${calories} </span>Kalorien</h2>
     `
     }
     

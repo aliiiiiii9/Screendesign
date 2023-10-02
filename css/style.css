@@ -86,6 +86,21 @@ header{
 #linkEnd:hover{
     filter: drop-shadow(7px 5px 5px);
 }
+#Werte{
+    
+    text-align: center;
+    width: 60vw;
+    border: 3px solid #000;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 1vw;
+    margin-left: auto;
+    margin-top: 15vh;
+    margin-right: auto;
+}
+.bold{
+    font-weight: bold;
+    font-size: 1.5em;
+}
 @keyframes opacity {
     0%{
         opacity: 0;
