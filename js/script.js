@@ -47,9 +47,9 @@ async function generateSalad() {
             <h3>Nein</h3>
         </div>
     `
-
+    
 }
-async function cook() {
+function cook() {
 
     selectionHeader.innerHTML = "Dein Burger:"
     selectionBox.remove()
@@ -122,7 +122,9 @@ async function cook() {
         document.getElementById('meat').style.left = "39.5%"
     }
     let jsonString = JSON.stringify(arr)
-    //let calories = JSON.stringify(cal)
+    if(array[3]== 'salad'){
+        localStorage.setItem('Salat', "Salat")
+    }
     localStorage.setItem('burger', jsonString)
     localStorage.setItem('calories', cal)
     console.log(localStorage);
@@ -144,19 +146,21 @@ async function link() {
 }
 function values(){
     let arr = JSON.parse(localStorage.getItem('burger'))
+    console.log(arr);
     let calories = localStorage.getItem('calories')
-    if(arr[3] == "no"){
-        valueBox.innerHTML = `
-        <h2>Du hast gewählt:</h2>
-        <h2><span class="bold">${arr[0]} </span>mit<span class="bold"> ${arr[1]} </span>und<span class="bold"> ${arr[2]} </span>ohne Salat</h2>
-        <h2>Zusätzlich hat dein Burger<span class="bold"> ${calories} </span>Kalorien</h2>
-    `
-    }else{
+    let salad = localStorage.getItem('Salat')
+    if(salad == 'Salat'){
         valueBox.innerHTML = `
         <h2>Du hast gewählt:</h2>
         <h2><span class="bold">${arr[0]} </span>mit<span class="bold"> ${arr[1]} </span>und<span class="bold"> ${arr[2]} </span>mit<span class="bold"> Salat</span></h2>
         <h2>Zusätzlich hat dein Burger<span class="bold"> ${calories} </span>Kalorien</h2>
     `
+    }else{
+        valueBox.innerHTML = `
+        <h2>Du hast gewählt:</h2>
+        <h2><span class="bold">${arr[0]} </span>mit<span class="bold"> ${arr[1]} </span>und<span class="bold"> ${arr[2]} </span>ohne<span class="bold"> Salat</span></h2>
+        <h2>Zusätzlich hat dein Burger<span class="bold"> ${calories} </span>Kalorien</h2>
+    `
     }
-    
+    localStorage.clear()
 }
