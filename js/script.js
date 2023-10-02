@@ -49,7 +49,7 @@ async function generateSalad(){
 }
 async function setParams(key, value){
     let url = new URL(window.location)
-    let params = new URLSearchParams(url.search); 
+    let params = new URLSearchParams(url.search)
     params.set(key, value)
 
     console.log(params);
