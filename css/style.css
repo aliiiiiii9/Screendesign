@@ -14,8 +14,8 @@ body{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 38vh;
-    font-size: 12vh;
+    margin-top: 10vh;
+    font-size: 6vh;
 }
 header{
     font-family: burgernation;
@@ -51,7 +51,41 @@ header{
     filter: brightness(75%);
     transition: all 0.5s;
 }
-
+#top{
+    top: 21vh;
+    z-index: 5;
+}
+#bottom{
+    top: 23vh;
+    z-index: 2;
+}
+#salad{
+    top: 27vh;
+    z-index: 4;
+}
+#meat{
+    top: 23vh;
+    z-index: 3;
+}
+#cookBox img{
+    position: absolute;
+    width: 20%;
+    left: 40%;
+}
+#linkEnd{
+    position: absolute;
+    top: 63vh;
+    left: 41.5%;
+    width: 20vw;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 3vh;
+    opacity: 0;
+    transition: all 0.5s;
+}
+#linkEnd:hover{
+    filter: drop-shadow(7px 5px 5px);
+}
 @keyframes opacity {
     0%{
         opacity: 0;

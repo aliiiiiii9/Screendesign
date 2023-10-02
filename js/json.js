@@ -8,9 +8,9 @@ let json = {
         },
         {
             "name": "Normales Brot",
-            "image": "../css/image/basicBread.webp",
+            "image": "../css/image/basicBread.jpg",
             "cal": 310,
-            "value": "normal"
+            "value": "basic"
         }
     ],
     meat: [
@@ -18,19 +18,19 @@ let json = {
             "name": "Rindfleisch",
             "image": "../css/image/beef.jpg",
             "cal": 249,
-            "value": "rind"
+            "value": "beef_cheese"
         },
         {
             "name": "Hühnerfleisch",
             "image": "../css/image/chicken.jpg",
             "cal": 143,
-            "value": "huhn"
+            "value": "chicken_cheese"
         },
         {
             "name": "Fisch",
-            "image": "../css/image/fish.avif",
+            "image": "../css/image/fish.jpg",
             "cal": 237,
-            "value": "fisch"
+            "value": "fish"
         },
     ],
     cheese: [
